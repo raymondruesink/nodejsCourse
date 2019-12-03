@@ -1,5 +1,5 @@
 const getNotes = (a) => {
-    console.log("Your notes...")
+    console.log(a)
 };
 
 module.exports = getNotes;
