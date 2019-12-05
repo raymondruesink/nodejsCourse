@@ -1,7 +1,10 @@
-const validator = require('validator');
 const getNotes = require('./notes.js');
-
+const chalk = require('chalk');
 
 getNotes('Your notes...');
-console.log(validator.isURL('http://www.adp.nl'));
+
+const msg = chalk.blue.inverse('Success!');
+
+console.log(msg);
+
 
