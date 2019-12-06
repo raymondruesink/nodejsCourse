@@ -1,7 +1,10 @@
+const chalk = require('chalk');
 const fs =require('fs');
 const getNotes = (a) => {
     console.log(a)
 };
+
+//add a note
 
 const addNote = function (title, body) {
     const notes = loadNotes();
@@ -19,19 +22,16 @@ const addNote = function (title, body) {
             }
         );
         saveNotes(notes);
-        console.log('New note added!');
+        console.log(chalk.green.inverse('New note added!'));
     } else {
-        console.log('note title taken');
+        console.log(chalk.red.inverse('note title taken'));
     }
 
-    notes.push(
-        {
-            title: title,
-            body: body
-        }
-    );
+    
     saveNotes(notes);
 };
+
+
 
 const saveNotes = function (notes) {
     const dataJSON = JSON.stringify(notes);
@@ -50,7 +50,37 @@ const loadNotes = function () {
     
 };
 
+//remove a note
+
+const removeNote = function (title) {
+    const notes=loadNotes();
+    const notesToKeep = notes.filter(
+        function (note) {
+            return note.title !== title
+        }
+    );
+
+    if (notesToKeep.length === notes.length) {
+        console.log(chalk.red.inverse('No note found!'));
+    } else {
+        console.log(chalk.green.inverse('Note removed!'));
+        saveNotes(notesToKeep);
+    }
+
+    
+
+   
+
+}
+
+
+const destroyNote = function (title) {
+    console.log(title)
+}
+
+
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 };
